@@ -47,8 +47,9 @@ The application is "plug-and-play." To use it, upload a CSV file with these exac
 This project consists of the following:
 1.  **`app.py`**: The "Brain" (The logic and UI).
 2.  **`requirements.txt`**: The "Environment" (The libraries).
-3.  **`generate_data.py`**: The "Demo" (The fake data).
+3.  **`generate_data.py`**: The "Demo" (The fake data generator).
 4.  **`README.md`**: The "Manual" (The explanation).
+5.  **`mock_sales_data.csv`**: Synthetic Data to upload in Streamlit to test run the application.
 
 **Since we've completed the full RFM and Predictive suite, would you like me to help you draft the email or presentation text to send to a potential client or your manager to introduce them to this tool?**
 

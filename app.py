@@ -81,9 +81,17 @@ if uploaded_file:
         rfm = rfm.reset_index()
 
         # Simple Scoring (1-5)
-        rfm['R_Score'] = pd.qcut(rfm['Recency_Days'], 5, labels=[5, 4, 3, 2, 1])
-        rfm['F_Score'] = pd.qcut(rfm['Frequency'].rank(method='first'), 5, labels=[1, 2, 3, 4, 5])
         
+        # Robust Scoring (Handles small datasets and tied values)
+        try:
+            rfm['R_Score'] = pd.qcut(rfm['Recency_Days'], 5, labels=[5, 4, 3, 2, 1], duplicates='drop')
+            rfm['F_Score'] = pd.qcut(rfm['Frequency'].rank(method='first'), 5, labels=[1, 2, 3, 4, 5], duplicates='drop')
+        except ValueError:
+            # Fallback for very small datasets where qcut fails
+            st.warning("⚠️ Dataset too small for quintiles. Using simplified ranking.")
+            rfm['R_Score'] = pd.cut(rfm['Recency_Days'], bins=5, labels=[5, 4, 3, 2, 1], duplicates='drop').fillna(1)
+            rfm['F_Score'] = pd.cut(rfm['Frequency'].rank(method='first'), bins=5, labels=[1, 2, 3, 4, 5], duplicates='drop').fillna(1)
+            
         # Segment Assignment
         rfm['RFM_Score'] = rfm['R_Score'].astype(str) + rfm['F_Score'].astype(str)
         seg_map = {

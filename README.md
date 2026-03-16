@@ -51,7 +51,10 @@ This project consists of the following:
 4.  **`README.md`**: The "Manual" (The explanation).
 5.  **`mock_sales_data.csv`**: Synthetic Data to upload in Streamlit to test run the application.
 
-**Since we've completed the full RFM and Predictive suite, would you like me to help you draft the email or presentation text to send to a potential client or your manager to introduce them to this tool?**
+### Developed by: SG Venture Consulting's Data Science Team
+
+### Principal Consultant: Patrick Oh
+
 
 ### Developed by: SG Venture Consulting's Data Science Team
 
